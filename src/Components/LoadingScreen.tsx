@@ -1,27 +1,32 @@
-import { Box, BrandLoadingScreen, ButtonLayout, ButtonPrimary, EmailField, Form, Stack, TextField } from '@telefonica/mistica'
+import { BrandLoadingScreen } from '@telefonica/mistica'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export function LoadingScreen() {
-    return <>
-        <BrandLoadingScreen title="Some title" description="Some description text" />
-        <BrandLoadingScreen title="Some title" description="Some description text" />
-        <Form
-            onSubmit={(formData) =>
-                alert({
-                    title: "This is your data",
-                    message: JSON.stringify(formData, null, 2),
-                })
-            }
-        >
-            <Box padding={16}>
-                <Stack space={16}>
-                    <TextField name="name" label="Name" />
-                    <EmailField name="email" label="e-mail" />
-                    <ButtonLayout
-                        primaryButton={<ButtonPrimary submit>Send</ButtonPrimary>}
-                    />
-                </Stack>
-            </Box>
-        </Form>
+interface LoadingScreenProps {
+  redirectTo: string
+  title?: string
+  description?: string
+}
 
-    </>
+export function LoadingScreen({
+  redirectTo,
+  title = 'Carregando...',
+  description = 'Por favor, aguarde.',
+}: LoadingScreenProps) {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate(redirectTo)
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [navigate, redirectTo])
+
+  return (
+    <BrandLoadingScreen 
+      title={title} 
+      description={description}
+    />
+  )
 }
