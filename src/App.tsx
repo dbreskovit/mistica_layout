@@ -1,12 +1,12 @@
-
-import './App.css'
+import { LoadingScreen } from "./Components/LoadingScreen"
 
 
 function App() {
   return (
     <>
-    Olá, Mundo!
+    <LoadingScreen />
     </>
+      
   )
 }
 
