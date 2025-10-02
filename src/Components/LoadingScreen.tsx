@@ -1,6 +1,5 @@
 import { Box, BrandLoadingScreen, ButtonLayout, ButtonPrimary, EmailField, Form, Stack, TextField } from '@telefonica/mistica'
 
-
 export function LoadingScreen() {
     return <>
         <BrandLoadingScreen title="Some title" description="Some description text" />

@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@telefonica/mistica/css/mistica.css';
-import App from './App.tsx'
+import { LoadingScreen } from './Components/LoadingScreen.tsx';
 import { getVivoNewSkin, ThemeContextProvider, type ThemeConfig } from '@telefonica/mistica'
-
+import { BrowserRouter, Routes, Route } from 'react-router';
 
 const theme: ThemeConfig = {
   skin: getVivoNewSkin(),
@@ -14,11 +14,14 @@ const theme: ThemeConfig = {
   },
 };
 
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
+    <BrowserRouter>
+    <Routes>
     <ThemeContextProvider theme={theme}>
-      <App />
+      <Route path='/' element={<LoadingScreen />} />
     </ThemeContextProvider>
+    </Routes>
+    </BrowserRouter>
   </StrictMode>
 )
