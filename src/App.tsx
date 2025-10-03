@@ -1,24 +1,17 @@
-import { StrictMode } from "react"
-import { ThemeContextProvider } from "@telefonica/mistica"
+import { ThemeContextProvider, ResponsiveLayout } from "@telefonica/mistica"
 import { RouterProvider } from "react-router-dom"
-import theme from './theme.ts'
+import { theme } from './theme.ts'
 import { router } from "./routes";
 import '@telefonica/mistica/css/mistica.css';
 
 
-function App() {
+
+export default function App() {
   return (
-    <>
-    <StrictMode>
-      <ThemeContextProvider theme={theme}>
+    <ThemeContextProvider theme={theme}>
+      <ResponsiveLayout>
         <RouterProvider router={router} />
-      </ThemeContextProvider>
-    </StrictMode>
-    </>
-      
+      </ResponsiveLayout>
+    </ThemeContextProvider>
   )
 }
-
-export default App
-
-
